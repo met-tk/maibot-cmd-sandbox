@@ -1,0 +1,33 @@
+[plugin]
+enabled = true
+config_version = "1.4.0"
+
+[security]
+# 拥有执行权限的管理员账号列表（支持纯QQ号或包含平台前缀如 "qq:123456789"）
+admin_users = ["123456789"]
+# 拦截非管理员时的回复文案（留空则静默不回复）
+unauthorized_message = "权限不足：该系统控制与截图命令仅允许管理员执行。"
+# 允许大模型通过自然语言调用工具（开启后可直接通过自然语言让麦麦截图、执行命令、关机）
+enable_llm_tools = true
+# 是否允许在指定的群聊中执行系统控制与终端命令（总开关）
+allow_in_groups = false
+# 允许执行系统控制与终端命令的群聊白名单列表（支持纯群号或如 "qq:12345678"）
+allowed_groups = []
+# 未授权群聊触发命令时的提示回复（留空则静默不回复）
+unauthorized_group_message = "未授权群聊：当前群未开启系统命令执行权限，仅在管理员授权的指定群聊或私聊中可用。"
+
+[sandbox]
+# 默认沙盒工作区目录（命令默认在此目录下执行，Agent编写工具套件与脚本在此进行）
+workspace_dir = "D:\\Agentworkspace"
+# 写入权限约束：是否默认仅允许在沙盒工作区内进行写入
+sandbox_only_write = true
+# 沙盒外写入双重确认门禁：在沙盒外写入时，是否必须经管理员显式双重确认才允许写入
+allow_write_outside_with_confirm = true
+# 单次命令执行超时秒数
+timeout_seconds = 30
+# 命令最大输出字符数（超过截断，防止消息刷屏）
+max_output_chars = 2000
+# 是否允许系统控制命令（关机 shutdown / 重启 restart 等）
+allow_system_control = true
+# 关机默认延时秒数（留出反悔与取消关机的缓冲时间）
+shutdown_delay_seconds = 60
