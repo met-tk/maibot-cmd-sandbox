@@ -1,8 +1,15 @@
 {
   "manifest_version": 2,
   "id": "maibot-cmd-sandbox",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "name": "沙盒终端与全能系统控制 | Sandbox Terminal & Full System Control",
+  "display": {
+    "icon": {
+      "type": "local",
+      "value": "assets/icon.svg",
+      "fallback": "terminal"
+    }
+  },
   "description": "为麦麦提供多显示器桌面截图、文件安全读写与沙盒约束、终端命令执行、进程管理、应用启动及系统电源控制，支持私聊与指定授权群聊自然语言及前缀指令。",
   "author": {
     "name": "met-tk",
