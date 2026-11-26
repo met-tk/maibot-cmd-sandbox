@@ -1,6 +1,6 @@
 [plugin]
 enabled = true
-config_version = "1.4.0"
+config_version = "1.5.0"
 
 [security]
 # 拥有执行权限的管理员账号列表（支持纯QQ号或包含平台前缀如 "qq:123456789"）
@@ -23,7 +23,7 @@ workspace_dir = "D:\\Agentworkspace"
 sandbox_only_write = true
 # 沙盒外写入双重确认门禁：在沙盒外写入时，是否必须经管理员显式双重确认才允许写入
 allow_write_outside_with_confirm = true
-# 单次命令执行超时秒数
+# 单次同步命令执行超时秒数
 timeout_seconds = 30
 # 命令最大输出字符数（超过截断，防止消息刷屏）
 max_output_chars = 2000
@@ -31,3 +31,43 @@ max_output_chars = 2000
 allow_system_control = true
 # 关机默认延时秒数（留出反悔与取消关机的缓冲时间）
 shutdown_delay_seconds = 60
+
+# --- 桌面窗口与键鼠交互控制 ---
+# 是否允许桌面窗口状态控制（恢复、最小化、最大化、置前、移动缩放、温和关闭）
+allow_window_control = true
+# 是否允许受控 GUI 键鼠交互（高敏感能力，默认关闭）
+allow_gui_input = false
+# 开启 GUI 键鼠交互后，每次操作是否要求管理员二次确认
+require_confirm_gui_input = true
+
+# --- 高危风控、审计日志与沙盒文件图片保护 ---
+# 命中高危特征的终端命令、后台任务与关键进程终止是否强制要求二次确认
+confirm_high_risk_commands = true
+# 是否允许发送沙盒工作区外部的本地图片文件（默认严格限定在沙盒内部）
+allow_send_image_outside_sandbox = false
+# 本地直发图片最大允许体积（MB）
+max_send_image_mb = 15
+# 后台长任务最大同时运行数
+max_concurrent_jobs = 5
+# 单个后台长任务最长允许运行时长（秒）
+max_job_runtime_seconds = 3600
+# 是否启用本地操作审计日志（按天写入沙盒 audit_logs/ 目录，自动脱敏凭据）
+enable_audit_log = true
+# 审计日志保留天数
+audit_retention_days = 30
+
+# --- 后台轻量看门狗配置 ---
+# 是否随插件启动后台运维看门狗（默认关闭）
+watchdog_enabled = false
+# 看门狗轮询检查间隔秒数（最小 10 秒）
+watchdog_interval_seconds = 60
+# 同类型告警冷却秒数（防止重复刷屏）
+watchdog_cooldown_seconds = 300
+# 磁盘剩余空间告警阈值（GB，设为 0 则关闭）
+watchdog_disk_min_free_gb = 10.0
+# 受监控进程名列表（当曾活跃的进程退出时推送告警）
+watchdog_processes = []
+# 是否监控锁屏与解锁状态变化并推送通知
+watchdog_lock_state = false
+# 看门狗告警默认推送会话 stream_id（留空则自动尝试发给首位管理员私聊）
+watchdog_notify_stream_id = ""
